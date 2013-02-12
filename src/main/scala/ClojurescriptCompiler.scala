@@ -20,9 +20,9 @@ trait ClojureScriptCompiler {
   def compile(cljs: File, options: Seq[String]): String = {
     //TODO: unused for now
     val optionMap = seqToMap(options)
+    val optionStr = "{:output-dir \"public/javascripts\" :output-to nil}"
     //TODO: remove hardcoding of public javascript folder
-    buildFunc.invoke(cljs.getPath,
-      "{:output-dir \"public/javascripts/\" :output-to nil}").asInstanceOf[String]
+    buildFunc.invoke(cljs.getPath, optionStr).asInstanceOf[String]
   }
 
   private def seqToMap(seq: Seq[String]): Map[String, String] = {
